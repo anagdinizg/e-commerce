@@ -68,10 +68,10 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
    ```
 
 2. **Configurar opções:**
-   - Vue Router: ✅ Yes
-   - Pinia: ✅ Yes
-   - ESLint: ✅ Yes
-   - Prettier: ✅ Yes
+   - Vue Router: Yes
+   - Pinia: Yes
+   - ESLint: Yes
+   - Prettier: Yes
 
 3. **Instalar dependências:**
 
