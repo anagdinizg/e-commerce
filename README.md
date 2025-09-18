@@ -2,30 +2,30 @@
 
 Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando todas as funcionalidades essenciais de uma loja online.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-### ✅ Catálogo de Produtos
+### Catálogo de Produtos
 
 - Listagem de produtos com cards informativos
 - Filtros por categoria e busca por nome
 - Ordenação por nome e preço
 - Layout responsivo
 
-### ✅ Detalhes do Produto
+### Detalhes do Produto
 
 - Página dedicada para cada produto
 - Galeria de imagens
 - Informações detalhadas
 - Botão "Adicionar ao Carrinho"
 
-### ✅ Carrinho de Compras
+### Carrinho de Compras
 
 - Adicionar/remover produtos
 - Alterar quantidades
 - Cálculo automático de subtotais e total
 - Drawer lateral para acesso rápido
 
-### ✅ Checkout Avançado
+### Checkout Avançado
 
 - Formulário completo de dados pessoais
 - Integração com API ViaCEP
@@ -33,7 +33,7 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
 - Validação de campos e tratamento de erros
 - Acessibilidade (ARIA labels, foco automático)
 
-### ✅ Integração ViaCEP
+### Integração ViaCEP
 
 - Busca automática por CEP
 - Preenchimento de logradouro, bairro, cidade e UF
@@ -43,7 +43,7 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
   - Falhas de rede
 - Campos editáveis para correções manuais
 
-## 🛠 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Vue.js 3** - Framework JavaScript reativo
 - **Vuetify 3** - Framework de componentes Material Design
@@ -52,7 +52,7 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
 - **Vite** - Build tool e dev server
 - **API ViaCEP** - Consulta de CEPs
 
-## 📦 Instalação e Execução
+## Instalação e Execução
 
 ### Pré-requisitos
 
@@ -92,30 +92,7 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
    http://localhost:5173
    ```
 
-## 🏗 Estrutura do Projeto
-
-```
-src/
-├── components/          # Componentes reutilizáveis
-│   ├── ProductCard.vue     # Card do produto
-│   ├── CartDrawer.vue      # Drawer do carrinho
-│   └── CheckoutForm.vue    # Formulário de checkout
-├── views/              # Páginas da aplicação
-│   ├── HomeView.vue        # Página inicial (catálogo)
-│   ├── ProductView.vue     # Detalhes do produto
-│   └── CheckoutView.vue    # Finalização de compra
-├── stores/             # Gerenciamento de estado
-│   ├── products.js         # Estado dos produtos
-│   └── cart.js             # Estado do carrinho
-├── services/           # Serviços externos
-│   └── cep.js              # Integração ViaCEP
-├── utils/              # Utilitários
-│   └── currency.js         # Formatação de moeda
-└── plugins/            # Plugins
-    └── vuetify.js          # Configuração Vuetify
-```
-
-## 🎯 Conceitos Implementados
+## Conceitos Implementados
 
 ### JavaScript Moderno
 
@@ -153,7 +130,7 @@ src/
 - ✅ **Semântica**: HTML semântico correto
 - ✅ **Contraste**: Cores acessíveis
 
-## 🎨 Features de UX/UI
+## Features de UX/UI
 
 ### Responsividade
 
@@ -172,10 +149,9 @@ src/
 
 - SPA (Single Page Application)
 - Roteamento dinâmico
-- Breadcrumbs visuais
 - Drawer lateral
 
-## 🔧 Scripts Disponíveis
+## Scripts Disponíveis
 
 ```bash
 # Desenvolvimento
@@ -191,25 +167,3 @@ npm run preview
 npm run lint
 ```
 
-## 🌟 Melhorias Implementadas
-
-### Performance
-
-- Lazy loading de imagens
-- Debounce em buscas
-- Estados de loading
-- Otimização de re-renders
-
-### Usabilidade
-
-- Máscara em campos (CEP, telefone)
-- Auto-preenchimento de endereço
-- Validação em tempo real
-- Confirmações visuais
-
-### Robustez
-
-- Tratamento de edge cases
-- Estados de erro
-- Fallbacks de rede
-- Validações client-side
