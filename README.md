@@ -96,39 +96,39 @@ Um e-commerce completo desenvolvido com Vue.js 3 e Vuetify 3, implementando toda
 
 ### JavaScript Moderno
 
-- ✅ **Arrow Functions**: Uso extensivo em métodos e callbacks
-- ✅ **Higher-Order Functions**: map, filter, reduce, find
-- ✅ **Async/Await**: Requisições assíncronas para ViaCEP
-- ✅ **Destructuring**: Desestruturação de objetos e arrays
-- ✅ **Template Literals**: Strings dinâmicas
-- ✅ **Modules**: Import/Export ES6
+- **Arrow Functions**: Uso extensivo em métodos e callbacks
+- **Higher-Order Functions**: map, filter, reduce, find
+- **Async/Await**: Requisições assíncronas para ViaCEP
+- **Destructuring**: Desestruturação de objetos e arrays
+- **Template Literals**: Strings dinâmicas
+- **Modules**: Import/Export ES6
 
 ### Programação Orientada a Objetos
 
-- ✅ **Classes**: CepService como classe utilitária
-- ✅ **Encapsulamento**: Métodos privados e públicos
-- ✅ **Abstração**: Serviços especializados
+- **Classes**: CepService como classe utilitária
+- **Encapsulamento**: Métodos privados e públicos
+- **Abstração**: Serviços especializados
 
 ### Manipulação do DOM e Eventos
 
-- ✅ **Event Handling**: Eventos de click, submit, input
-- ✅ **Refs**: Acesso direto a elementos DOM
-- ✅ **Watchers**: Reatividade em mudanças de estado
-- ✅ **Lifecycle**: Hooks do Vue.js
+- **Event Handling**: Eventos de click, submit, input
+- **Refs**: Acesso direto a elementos DOM
+- **Watchers**: Reatividade em mudanças de estado
+- **Lifecycle**: Hooks do Vue.js
 
 ### Tratamento de Erros
 
-- ✅ **Try/Catch**: Captura de erros em requisições
-- ✅ **Validações**: Campos obrigatórios e formatos
-- ✅ **Feedback Visual**: Mensagens de erro e sucesso
-- ✅ **Fallbacks**: Comportamento alternativo em falhas
+- **Try/Catch**: Captura de erros em requisições
+- **Validações**: Campos obrigatórios e formatos
+- **Feedback Visual**: Mensagens de erro e sucesso
+- **Fallbacks**: Comportamento alternativo em falhas
 
 ### Acessibilidade (A11y)
 
-- ✅ **ARIA Labels**: aria-live para leitores de tela
-- ✅ **Foco Automático**: Navegação por teclado
-- ✅ **Semântica**: HTML semântico correto
-- ✅ **Contraste**: Cores acessíveis
+- **ARIA Labels**: aria-live para leitores de tela
+- **Foco Automático**: Navegação por teclado
+- **Semântica**: HTML semântico correto
+- **Contraste**: Cores acessíveis
 
 ## Features de UX/UI
 
