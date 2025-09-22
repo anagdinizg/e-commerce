@@ -1,599 +1,406 @@
-export const validateField = (field, value, options = {}) => { 
+export const validateField = (field, value, options = {}) => {
+  const clean = String(value || '').trim()
 
-  const clean = String(value || '').trim() 
+  const { required = true, customMessage } = options
 
-  const { required = true, customMessage } = options 
+  if (!clean) {
+    return required ? customMessage || 'Campo obrigatório' : ''
+  }
 
- 
+  switch (field) {
+    case 'nome': {
+      const words = clean.split(/\s+/).filter((w) => w.length > 0)
 
-  if (!clean) { 
+      if (words.length < 2) {
+        return 'Informe nome e sobrenome'
+      }
 
-    return required ? customMessage || 'Campo obrigatório' : '' 
+      if (words.some((w) => w.length < 2)) {
+        return 'Nome e sobrenome devem ter pelo menos 2 caracteres cada'
+      }
 
-  } 
+      if (!/^[a-zA-ZÀ-ÿ\s-']+$/.test(clean)) {
+        return 'Nome deve conter apenas letras'
+      }
 
- 
+      return ''
+    }
 
-  switch (field) { 
+    case 'email': {
+      const emailRegex =
+        /^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?@[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$/
 
-    case 'nome': { 
+      if (clean.length > 254) {
+        return 'E-mail muito longo'
+      }
 
-      const words = clean.split(/\s+/).filter((w) => w.length > 0) 
+      if (!emailRegex.test(clean)) {
+        return 'E-mail inválido'
+      }
 
- 
+      if (clean.includes('..')) {
+        return 'E-mail não pode ter pontos consecutivos'
+      }
 
-      if (words.length < 2) { 
+      return ''
+    }
 
-        return 'Informe nome e sobrenome' 
+    case 'telefone': {
+      const digits = clean.replace(/\D/g, '')
 
-      } 
+      if (digits.length < 10) {
+        return 'Telefone deve ter DDD + número (mín. 10 dígitos)'
+      }
 
- 
+      if (digits.length > 11) {
+        return 'Telefone deve ter no máximo 11 dígitos'
+      }
 
-      if (words.some((w) => w.length < 2)) { 
+      const ddd = digits.substring(0, 2)
 
-        return 'Nome e sobrenome devem ter pelo menos 2 caracteres cada' 
+      const validDDDs = [
+        '11',
 
-      } 
+        '12',
 
- 
+        '13',
 
-      if (!/^[a-zA-ZÀ-ÿ\s-']+$/.test(clean)) { 
+        '14',
 
-        return 'Nome deve conter apenas letras' 
+        '15',
 
-      } 
+        '16',
 
- 
+        '17',
 
-      return '' 
+        '18',
 
-    } 
+        '19', // SP
 
- 
+        '21',
 
-    case 'email': { 
+        '22',
 
-      const emailRegex = 
+        '24', // RJ
 
-        /^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?@[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$/ 
+        '27',
 
- 
+        '28', // ES
 
-      if (clean.length > 254) { 
+        '31',
 
-        return 'E-mail muito longo' 
+        '32',
 
-      } 
+        '33',
 
- 
+        '34',
 
-      if (!emailRegex.test(clean)) { 
+        '35',
 
-        return 'E-mail inválido' 
+        '37',
 
-      } 
+        '38', // MG
 
- 
+        '41',
 
-      if (clean.includes('..')) { 
+        '42',
 
-        return 'E-mail não pode ter pontos consecutivos' 
+        '43',
 
-      } 
+        '44',
 
- 
+        '45',
 
-      return '' 
+        '46', // PR
 
-    } 
+        '47',
 
- 
+        '48',
 
-    case 'telefone': { 
+        '49', // SC
 
-      const digits = clean.replace(/\D/g, '') 
+        '51',
 
- 
+        '53',
 
-      if (digits.length < 10) { 
+        '54',
 
-        return 'Telefone deve ter DDD + número (mín. 10 dígitos)' 
+        '55', // RS
 
-      } 
+        '61', // DF
 
- 
+        '62',
 
-      if (digits.length > 11) { 
+        '64', // GO
 
-        return 'Telefone deve ter no máximo 11 dígitos' 
+        '63', // TO
 
-      } 
+        '65',
 
- 
+        '66', // MT
 
-      const ddd = digits.substring(0, 2) 
+        '67', // MS
 
-      const validDDDs = [ 
+        '68', // AC
 
-        '11', 
+        '69', // RO
 
-        '12', 
+        '71',
 
-        '13', 
+        '73',
 
-        '14', 
+        '74',
 
-        '15', 
+        '75',
 
-        '16', 
+        '77', // BA
 
-        '17', 
+        '79', // SE
 
-        '18', 
+        '81',
 
-        '19', // SP 
+        '87', // PE
 
-        '21', 
+        '82', // AL
 
-        '22', 
+        '83', // PB
 
-        '24', // RJ 
+        '84', // RN
 
-        '27', 
+        '85',
 
-        '28', // ES 
+        '88', // CE
 
-        '31', 
+        '86',
 
-        '32', 
+        '89', // PI
 
-        '33', 
+        '91',
 
-        '34', 
+        '93',
 
-        '35', 
+        '94', // PA
 
-        '37', 
+        '92',
 
-        '38', // MG 
+        '97', // AM
 
-        '41', 
+        '95', // RR
 
-        '42', 
+        '96', // AP
 
-        '43', 
+        '98',
 
-        '44', 
+        '99', // MA
+      ]
 
-        '45', 
+      if (!validDDDs.includes(ddd)) {
+        return 'DDD inválido'
+      }
 
-        '46', // PR 
+      if (digits.length === 11) {
+        const firstDigit = digits.charAt(2)
 
-        '47', 
+        if (firstDigit !== '9') {
+          return 'Celular deve começar com 9 após o DDD'
+        }
+      }
 
-        '48', 
+      return ''
+    }
 
-        '49', // SC 
+    case 'cep': {
+      const digits = clean.replace(/\D/g, '')
 
-        '51', 
+      if (digits.length !== 8) {
+        return 'CEP deve ter exatamente 8 dígitos'
+      }
 
-        '53', 
+      if (/^0+$/.test(digits) || /^9{8}$/.test(digits)) {
+        return 'CEP inválido'
+      }
 
-        '54', 
+      return ''
+    }
 
-        '55', // RS 
+    case 'logradouro':
+    case 'bairro':
+    case 'cidade': {
+      if (clean.length < 2) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} deve ter pelo menos 2 caracteres`
+      }
 
-        '61', // DF 
+      if (clean.length > 100) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} muito longo`
+      }
 
-        '62', 
+      if (!/^[a-zA-Z0-9À-ÿ\s,.'-]+$/.test(clean)) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} contém caracteres inválidos`
+      }
 
-        '64', // GO 
+      return ''
+    }
 
-        '63', // TO 
+    case 'numero': {
+      if (!/^[0-9]+[a-zA-Z]?$/.test(clean)) {
+        return 'Número inválido (ex: 123 ou 123A)'
+      }
 
-        '65', 
+      const numero = parseInt(clean)
 
-        '66', // MT 
+      if (numero === 0) {
+        return 'Número deve ser maior que 0'
+      }
 
-        '67', // MS 
+      if (numero > 99999) {
+        return 'Número muito alto'
+      }
 
-        '68', // AC 
+      return ''
+    }
 
-        '69', // RO 
+    case 'complemento': {
+      if (clean.length > 50) {
+        return 'Complemento muito longo'
+      }
 
-        '71', 
+      return ''
+    }
 
-        '73', 
+    case 'uf': {
+      const upperUF = clean.toUpperCase()
 
-        '74', 
+      const validUFs = [
+        'AC',
 
-        '75', 
+        'AL',
 
-        '77', // BA 
+        'AP',
 
-        '79', // SE 
+        'AM',
 
-        '81', 
+        'BA',
 
-        '87', // PE 
+        'CE',
 
-        '82', // AL 
+        'DF',
 
-        '83', // PB 
+        'ES',
 
-        '84', // RN 
+        'GO',
 
-        '85', 
+        'MA',
 
-        '88', // CE 
+        'MT',
 
-        '86', 
+        'MS',
 
-        '89', // PI 
+        'MG',
 
-        '91', 
+        'PA',
 
-        '93', 
+        'PB',
 
-        '94', // PA 
+        'PR',
 
-        '92', 
+        'PE',
 
-        '97', // AM 
+        'PI',
 
-        '95', // RR 
+        'RJ',
 
-        '96', // AP 
+        'RN',
 
-        '98', 
+        'RS',
 
-        '99', // MA 
+        'RO',
 
-      ] 
+        'RR',
 
- 
+        'SC',
 
-      if (!validDDDs.includes(ddd)) { 
+        'SP',
 
-        return 'DDD inválido' 
+        'SE',
 
-      } 
+        'TO',
+      ]
 
- 
+      if (!validUFs.includes(upperUF)) {
+        return 'UF inválida'
+      }
 
-      if (digits.length === 11) { 
+      return ''
+    }
 
-        const firstDigit = digits.charAt(2) 
+    default: {
+      if (clean.length > 255) {
+        return 'Campo muito longo'
+      }
 
-        if (firstDigit !== '9') { 
+      return ''
+    }
+  }
+}
 
-          return 'Celular deve começar com 9 após o DDD' 
+export const validateForm = (formData, fieldsConfig = {}) => {
+  const errors = {}
 
-        } 
+  Object.keys(formData).forEach((field) => {
+    const config = fieldsConfig[field] || {}
 
-      } 
+    const error = validateField(field, formData[field], config)
 
- 
+    if (error) {
+      errors[field] = error
+    }
+  })
 
-      return '' 
+  return {
+    isValid: Object.keys(errors).length === 0,
 
-    } 
+    errors,
+  }
+}
 
- 
+export const validateFieldLive = (field, value) => {
+  const clean = String(value || '').trim()
 
-    case 'cep': { 
+  if (!clean) return ''
 
-      const digits = clean.replace(/\D/g, '') 
+  switch (field) {
+    case 'email':
+      if (clean.includes('@')) {
+        const parts = clean.split('@')
 
- 
+        if (parts.length !== 2 || !parts[1].includes('.')) {
+          return 'E-mail incompleto'
+        }
+      }
 
-      if (digits.length !== 8) { 
+      return ''
 
-        return 'CEP deve ter exatamente 8 dígitos' 
+    case 'cep': {
+      const digits = clean.replace(/\D/g, '')
 
-      } 
+      if (digits.length > 0 && digits.length < 8) {
+        return 'CEP incompleto'
+      }
 
- 
+      return ''
+    }
 
-      if (/^0+$/.test(digits) || /^9{8}$/.test(digits)) { 
+    case 'telefone': {
+      const phoneDigits = clean.replace(/\D/g, '')
 
-        return 'CEP inválido' 
+      if (phoneDigits.length > 0 && phoneDigits.length < 10) {
+        return 'Telefone incompleto'
+      }
 
-      } 
+      return ''
+    }
 
- 
-
-      return '' 
-
-    } 
-
- 
-
-    case 'logradouro': 
-
-    case 'bairro': 
-
-    case 'cidade': { 
-
-      if (clean.length < 2) { 
-
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} deve ter pelo menos 2 caracteres` 
-
-      } 
-
- 
-
-      if (clean.length > 100) { 
-
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} muito longo` 
-
-      } 
-
- 
-
-      if (!/^[a-zA-Z0-9À-ÿ\s,.'-]+$/.test(clean)) { 
-
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} contém caracteres inválidos` 
-
-      } 
-
- 
-
-      return '' 
-
-    } 
-
- 
-
-    case 'numero': { 
-
-      if (!/^[0-9]+[a-zA-Z]?$/.test(clean)) { 
-
-        return 'Número inválido (ex: 123 ou 123A)' 
-
-      } 
-
- 
-
-      const numero = parseInt(clean) 
-
-      if (numero === 0) { 
-
-        return 'Número deve ser maior que 0' 
-
-      } 
-
- 
-
-      if (numero > 99999) { 
-
-        return 'Número muito alto' 
-
-      } 
-
- 
-
-      return '' 
-
-    } 
-
- 
-
-    case 'complemento': { 
-
-      if (clean.length > 50) { 
-
-        return 'Complemento muito longo' 
-
-      } 
-
- 
-
-      return '' 
-
-    } 
-
- 
-
-    case 'uf': { 
-
-      const upperUF = clean.toUpperCase() 
-
-      const validUFs = [ 
-
-        'AC', 
-
-        'AL', 
-
-        'AP', 
-
-        'AM', 
-
-        'BA', 
-
-        'CE', 
-
-        'DF', 
-
-        'ES', 
-
-        'GO', 
-
-        'MA', 
-
-        'MT', 
-
-        'MS', 
-
-        'MG', 
-
-        'PA', 
-
-        'PB', 
-
-        'PR', 
-
-        'PE', 
-
-        'PI', 
-
-        'RJ', 
-
-        'RN', 
-
-        'RS', 
-
-        'RO', 
-
-        'RR', 
-
-        'SC', 
-
-        'SP', 
-
-        'SE', 
-
-        'TO', 
-
-      ] 
-
- 
-
-      if (!validUFs.includes(upperUF)) { 
-
-        return 'UF inválida' 
-
-      } 
-
- 
-
-      return '' 
-
-    } 
-
- 
-
-    default: { 
-
-      if (clean.length > 255) { 
-
-        return 'Campo muito longo' 
-
-      } 
-
- 
-
-      return '' 
-
-    } 
-
-  } 
-
-} 
-
- 
-
-export const validateForm = (formData, fieldsConfig = {}) => { 
-
-  const errors = {} 
-
- 
-
-  Object.keys(formData).forEach((field) => { 
-
-    const config = fieldsConfig[field] || {} 
-
-    const error = validateField(field, formData[field], config) 
-
-    if (error) { 
-
-      errors[field] = error 
-
-    } 
-
-  }) 
-
- 
-
-  return { 
-
-    isValid: Object.keys(errors).length === 0, 
-
-    errors, 
-
-  } 
-
-} 
-
- 
-
-export const validateFieldLive = (field, value) => { 
-
-  const clean = String(value || '').trim() 
-
- 
-
-  if (!clean) return '' 
-
- 
-
-  switch (field) { 
-
-    case 'email': 
-
-      if (clean.includes('@')) { 
-
-        const parts = clean.split('@') 
-
-        if (parts.length !== 2 || !parts[1].includes('.')) { 
-
-          return 'E-mail incompleto' 
-
-        } 
-
-      } 
-
-      return '' 
-
- 
-
-    case 'cep': { 
-
-      const digits = clean.replace(/\D/g, '') 
-
-      if (digits.length > 0 && digits.length < 8) { 
-
-        return 'CEP incompleto' 
-
-      } 
-
-      return '' 
-
-    } 
-
- 
-
-    case 'telefone': { 
-
-      const phoneDigits = clean.replace(/\D/g, '') 
-
-      if (phoneDigits.length > 0 && phoneDigits.length < 10) { 
-
-        return 'Telefone incompleto' 
-
-      } 
-
-      return '' 
-
-    } 
-
- 
-
-    default: 
-
-      return '' 
-
-  } 
-
+    default:
+      return ''
+  }
 }
