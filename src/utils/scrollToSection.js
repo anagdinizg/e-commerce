@@ -1,105 +1,67 @@
-export function scrollToProductsSection() { 
+export function scrollToProductsSection() {
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('products-section')
 
-  const scrollToProducts = () => { 
+    if (!productsSection) return
 
-    const productsSection = document.getElementById('products-section') 
+    const header = document.querySelector('.main-header')
 
-    if (!productsSection) return 
+    const topBar = document.querySelector('.top-bar')
 
- 
+    const headerHeight = header?.offsetHeight || 0
 
-    const header = document.querySelector('.main-header') 
+    const topBarHeight = topBar?.offsetHeight || 0
 
-    const topBar = document.querySelector('.top-bar') 
+    const totalHeaderHeight = headerHeight + topBarHeight
 
- 
+    const rect = productsSection.getBoundingClientRect()
 
-    const headerHeight = header?.offsetHeight || 0 
+    const offsetPosition = window.scrollY + rect.top - totalHeaderHeight - 20
 
-    const topBarHeight = topBar?.offsetHeight || 0 
+    window.scrollTo({
+      top: offsetPosition,
 
-    const totalHeaderHeight = headerHeight + topBarHeight 
+      behavior: 'smooth',
+    })
+  }
 
- 
+  if (window.location.pathname === '/') {
+    scrollToProducts()
+  } else {
+    sessionStorage.setItem('scrollToProducts', 'true')
 
-    const rect = productsSection.getBoundingClientRect() 
+    window.location.href = '/'
+  }
+}
 
-    const offsetPosition = window.scrollY + rect.top - totalHeaderHeight - 20 
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('scrollToProducts') === 'true') {
+    sessionStorage.removeItem('scrollToProducts')
 
- 
+    setTimeout(() => {
+      const productsSection = document.getElementById('products-section')
 
-    window.scrollTo({ 
+      if (productsSection) {
+        const header = document.querySelector('.main-header')
 
-      top: offsetPosition, 
+        const topBar = document.querySelector('.top-bar')
 
-      behavior: 'smooth', 
+        const headerHeight = header?.offsetHeight || 0
 
-    }) 
+        const topBarHeight = topBar?.offsetHeight || 0
 
-  } 
+        const totalHeaderHeight = headerHeight + topBarHeight
 
- 
+        const rect = productsSection.getBoundingClientRect()
 
-  if (window.location.pathname === '/') { 
+        const offsetPosition = window.scrollY + rect.top - totalHeaderHeight - 20
 
-    scrollToProducts() 
+        window.scrollTo({
+          top: offsetPosition,
 
-  } else { 
-
-    sessionStorage.setItem('scrollToProducts', 'true') 
-
-    window.location.href = '/' 
-
-  } 
-
-} 
-
- 
-
-window.addEventListener('DOMContentLoaded', () => { 
-
-  if (sessionStorage.getItem('scrollToProducts') === 'true') { 
-
-    sessionStorage.removeItem('scrollToProducts') 
-
-    setTimeout(() => { 
-
-      const productsSection = document.getElementById('products-section') 
-
-      if (productsSection) { 
-
-        const header = document.querySelector('.main-header') 
-
-        const topBar = document.querySelector('.top-bar') 
-
- 
-
-        const headerHeight = header?.offsetHeight || 0 
-
-        const topBarHeight = topBar?.offsetHeight || 0 
-
-        const totalHeaderHeight = headerHeight + topBarHeight 
-
- 
-
-        const rect = productsSection.getBoundingClientRect() 
-
-        const offsetPosition = window.scrollY + rect.top - totalHeaderHeight - 20 
-
- 
-
-        window.scrollTo({ 
-
-          top: offsetPosition, 
-
-          behavior: 'smooth', 
-
-        }) 
-
-      } 
-
-    }, 50) 
-
-  } 
-
+          behavior: 'smooth',
+        })
+      }
+    }, 50)
+  }
 })

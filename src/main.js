@@ -1,14 +1,10 @@
-// main.js
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// Router
 import router from './router'
 
-// Pinia
 import { createPinia } from 'pinia'
 
-// Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
