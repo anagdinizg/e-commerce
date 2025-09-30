@@ -1,5 +1,29 @@
 import { defineStore } from 'pinia'
 
+import lipstick1 from '@/assets/images/lipstick-1.jpg'
+import lipstick2 from '@/assets/images/lipstick-2.jpg'
+import lipstick3 from '@/assets/images/lipstick-3.jpg'
+import lipstick4 from '@/assets/images/lipstick-4.jpg'
+
+import eyeshadow1 from '@/assets/images/eyeshadow-1.jpg'
+import eyeshadow2 from '@/assets/images/eyeshadow-2.jpg'
+import eyeshadow3 from '@/assets/images/eyeshadow-3.jpg'
+import eyeshadow4 from '@/assets/images/eyeshadow-4.jpg'
+
+import moisturizer1 from '@/assets/images/moisturizer-1.jpg'
+import serum1 from '@/assets/images/serum-1.jpg'
+import serum2 from '@/assets/images/serum-2.jpg'
+
+import parfum1 from '@/assets/images/parfum-1.jpg'
+import parfum2 from '@/assets/images/parfum-2.jpg'
+import parfum4 from '@/assets/images/parfum-4.avif'
+
+import eyemask1 from '@/assets/images/eyemask-1.jpg'
+import eyemask2 from '@/assets/images/eyemask-2.jpg'
+
+import base1 from '@/assets/images/base-1.jpg'
+import eyeliner1 from '@/assets/images/eyeliner-1.jpg'
+
 export const useProductsStore = defineStore('products', {
   state: () => ({
     products: [
@@ -8,12 +32,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Batom Rose Matte',
         price: 39.9,
         category: 'maquiagem',
-        image: '/src/assets/images/lipstick-4.jpg',
-        images: [
-          '/src/assets/images/lipstick-2.jpg',
-          '/src/assets/images/lipstick-3.jpg',
-          '/src/assets/images/lipstick-1.jpg',
-        ],
+        image: lipstick4,
+        images: [lipstick2, lipstick3, lipstick1],
         description:
           'Batom cremoso com acabamento matte, longa duração e cor intensa. Fórmula enriquecida com vitamina E para hidratação.',
       },
@@ -22,8 +42,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Paleta de Sombras Nude',
         price: 79.9,
         category: 'maquiagem',
-        image: '/src/assets/images/eyeshadow-1.jpg',
-        images: ['/src/assets/images/eyeshadow-2.jpg', '/src/assets/images/eyeshadow-3.jpg'],
+        image: eyeshadow1,
+        images: [eyeshadow2, eyeshadow3],
         description:
           'Paleta com 12 tons nude e marrons, textura sedosa e alta pigmentação. Perfeita para looks do dia ao noite.',
       },
@@ -32,8 +52,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Creme Hidratante Facial',
         price: 59.9,
         category: 'skincare',
-        image: '/src/assets/images/moisturizer-1.jpg',
-        images: ['/src/assets/images/moisturizer-1.jpg', '/src/assets/images/serum-1.jpg'],
+        image: moisturizer1,
+        images: [moisturizer1, serum1],
         description:
           'Creme hidratante com ácido hialurônico e colágeno. Hidratação profunda por 24 horas, ideal para todos os tipos de pele.',
       },
@@ -42,8 +62,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Sérum Vitamina C',
         price: 89.9,
         category: 'skincare',
-        image: '/src/assets/images/serum-1.jpg',
-        images: ['/src/assets/images/serum-2.jpg', '/src/assets/images/serum-1.jpg'],
+        image: serum1,
+        images: [serum2, serum1],
         description:
           'Sérum antioxidante com 20% de vitamina C. Combate sinais do envelhecimento e proporciona luminosidade natural.',
       },
@@ -52,8 +72,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Perfume Masculino Marcante',
         price: 129.9,
         category: 'perfume',
-        image: '/src/assets/images/parfum-4.avif',
-        images: ['/src/assets/images/parfum-2.jpg', '/src/assets/images/parfum-1.jpg'],
+        image: parfum4,
+        images: [parfum2, parfum1],
         description:
           'Fragrância floral sofisticada com notas de jasmim, rosa e vanilla. Duração de até 8 horas.',
       },
@@ -62,8 +82,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Máscara para Cílios Volume',
         price: 45.9,
         category: 'maquiagem',
-        image: '/src/assets/images/eyemask-2.jpg',
-        images: ['/src/assets/images/eyeshadow-2.jpg', '/src/assets/images/eyeshadow-4.jpg'],
+        image: eyemask2,
+        images: [eyeshadow2, eyeshadow4],
         description:
           "Máscara volumizadora à prova d'água. Fórmula com fibras que alonga e define os cílios sem ressecar.",
       },
@@ -72,8 +92,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Corretivo em bastão',
         price: 35.9,
         category: 'maquiagem',
-        image: '/src/assets/images/base-1.jpg',
-        images: ['/src/assets/images/eyeshadow-1.jpg', '/src/assets/images/eyemask-2.jpg'],
+        image: base1,
+        images: [eyeshadow1, eyemask2],
         description:
           "Máscara volumizadora à prova d'água. Fórmula com fibras que alonga e define os cílios sem ressecar.",
       },
@@ -82,8 +102,8 @@ export const useProductsStore = defineStore('products', {
         name: 'Delineador líquido',
         price: 35.9,
         category: 'maquiagem',
-        image: '/src/assets/images/eyeliner-1.jpg',
-        images: ['/src/assets/images/eyeshadow-1.jpg', '/src/assets/images/eyemask-1.jpg'],
+        image: eyeliner1,
+        images: [eyeshadow1, eyemask1],
         description:
           "Máscara volumizadora à prova d'água. Fórmula com fibras que alonga e define os cílios sem ressecar.",
       },
